@@ -1,0 +1,101 @@
+package base;
+
+import models.Product;
+
+import java.util.HashMap;
+import java.util.List;
+
+public abstract class User {
+    private String id;
+    private String name;
+    private String address;
+    private String age;
+    private double walletBalance;
+    private HashMap<String , Product> cart;
+
+    //Manager Constructor
+    public User(String id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    //Cashier Constructor
+    public User(String id, String name, String age){
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    //Customer Constructor
+    public User(String id, String name ,  String address , double walletBalance){
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.walletBalance = walletBalance;
+        this.cart = new HashMap<>();
+    }
+
+    public User() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", age='" + age + '\'' +
+                ", walletBalance=" + walletBalance +
+                ", cart=" + cart +
+                '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public double getWalletBalance() {
+        return walletBalance;
+    }
+
+    public void setWalletBalance(double walletBalance) {
+        this.walletBalance = walletBalance;
+    }
+
+    public HashMap<String, Product> getCart() {
+        return cart;
+    }
+
+    public void setCart(HashMap<String, Product> cart) {
+        this.cart = cart;
+    }
+}
