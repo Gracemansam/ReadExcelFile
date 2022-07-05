@@ -13,11 +13,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-       // FileUtility fileUtility = new FileUtility("resources/FoodSales.csv");
-        //fileUtility.createCategoryInventory(barsCategory, barCategoryTotalQuantity,  barCategoryProductId , barIdIncreament);
-       // System.out.println(fileUtility.createCategoryInventory(barsCategory, barCategoryTotalQuantity,  barCategoryProductId , barIdIncreament));
-
-
         Inventory inventory = new Inventory();
         CashierServiceImplementation service = new CashierServiceImplementation();
         for (Map.Entry<String , Product> inventor : inventory.getBarsCategory().entrySet()){
@@ -31,7 +26,6 @@ public class Main {
         service.addToCart("P244" , 23, inventory.getBarsCategory(), customer);
         service.buyProduct(customer);
         System.out.println(customer.getCart());
-
 
     }
 
