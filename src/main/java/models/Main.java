@@ -2,6 +2,7 @@ package main.java.models;
 
 import main.java.services.CashierServiceImplementation;
 import main.java.services.CustomerServiceImpl;
+import main.java.services.ManagerServiceImpl;
 import main.java.utility.Inventory;
 import main.java.models.Product;
 import java.io.IOException;
@@ -16,15 +17,30 @@ public class Main {
 
         Inventory inventory = new Inventory();
         CashierServiceImplementation cashierService = new CashierServiceImplementation();
-        CustomerServiceImpl cusomerService = new CustomerServiceImpl();
-
+        CustomerServiceImpl customerService = new CustomerServiceImpl();
+        ManagerServiceImpl managerService = new ManagerServiceImpl();
         Customer customer = new Customer("bb" , "Vincent" , "Lagos" , 5000);
+        Cashier cashier = new Cashier();
+
+        //******* Start Of Manager Service **********//
+
+        System.out.print("Enter Applicant's  Name: ");
+        String ApplicantName = input.nextLine();
+        System.out.print("Enter Applicant's  Age: ");
+        int ApplicantAge = input.nextInt();
+
+        managerService.hireCashier(ApplicantName,ApplicantAge, cashier );
+
+        //******* End Of Manager Service **********//
+
+
+
 
      //   searchByCategory("Crackers" , inventory.getBarsCategory());
         getAllCategory(inventory.getBarsCategory());
         String productId = null;
         int quantityToBuy = 0;
-      //  productID
+
         do{
             System.out.print("Enter Product ID to Add to Cart(Press Q to Proceed To CheckOut) :");
             productId = input.next();
@@ -39,7 +55,9 @@ public class Main {
 
 
         }while(productId.equalsIgnoreCase("P244") || productId.equalsIgnoreCase("P243") || productId.equalsIgnoreCase("P237") || productId.equalsIgnoreCase("P240") || productId.equalsIgnoreCase("P224") || productId.equalsIgnoreCase("P241") || productId.equalsIgnoreCase("P213") || productId.equalsIgnoreCase("P242") || productId.equalsIgnoreCase("P189"));
+
         cashierService.sellProduct(customer);
+        customerService.buyProduct(customer);
     }
 
 
