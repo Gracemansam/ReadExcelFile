@@ -1,6 +1,5 @@
 package main.java.base;
-
-import models.Product;
+import main.java.models.Product;
 
 import java.util.HashMap;
 import java.util.List;

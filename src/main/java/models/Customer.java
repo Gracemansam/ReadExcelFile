@@ -1,7 +1,7 @@
 package main.java.models;
 //import base.User;
 import main.java.base.User;
-import models.Product;
+import main.java.models.Product;
 
 import java.util.HashMap;
 
