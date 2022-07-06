@@ -2,7 +2,7 @@ package main.java.services;
 
 import main.java.interfaces.iCustomer;
 import main.java.models.Customer;
-
+import main.java.models.Product;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,9 +10,9 @@ public class CustomerServiceImpl implements iCustomer {
 
 
     @Override
-    public boolean checkDuplicate(String productId, HashMap<String , models.Product> cart){
+    public boolean checkDuplicate(String productId, HashMap<String, Product> cart){
         boolean isAdded = false;
-        for (Map.Entry<String , models.Product> productInCart : cart.entrySet()){
+        for (Map.Entry<String , Product> productInCart : cart.entrySet()){
             if (productInCart.getValue().getProductId().equalsIgnoreCase(productId)){
                 isAdded = true;
             }
@@ -21,9 +21,9 @@ public class CustomerServiceImpl implements iCustomer {
     }
 
     @Override
-    public models.Product findProduct(String productKey, HashMap<String , models.Product> cart){
-        models.Product product = null;
-        for (Map.Entry<String , models.Product> productInCart : cart.entrySet()){
+    public Product findProduct(String productKey, HashMap<String, Product> cart){
+        Product product = null;
+        for (Map.Entry<String , Product> productInCart : cart.entrySet()){
             if (productKey.equalsIgnoreCase(productInCart.getKey())){
                 product = productInCart.getValue();
             }
@@ -32,10 +32,10 @@ public class CustomerServiceImpl implements iCustomer {
     }
 
     @Override
-    public String addToCart(String productToBeAdded , int quantityToAdd, HashMap<String , models.Product> inventory, Customer customer){
-        models.Product product =  null;
+    public String addToCart(String productToBeAdded, int quantityToAdd, HashMap<String, Product> inventory, Customer customer){
+        Product product =  null;
         String message = "";
-        for (Map.Entry<String , models.Product> productInInventory : inventory.entrySet()){
+        for (Map.Entry<String , Product> productInInventory : inventory.entrySet()){
             //check if selected product is in store
             if (productToBeAdded.equalsIgnoreCase(productInInventory.getValue().getProductId())){
                 //Check if the product is still in stock
@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements iCustomer {
                         System.out.println(quantityToAdd + " more "+ product.getProductName() + " Has Been Added To Cart");
                         message =  "Updated";
                     }else{
-                        customer.getCart().put(productInInventory.getKey() , new models.Product(productInInventory.getValue().getProductId(),productInInventory.getValue().getProductName() , productInInventory.getValue().getProductCategory() , quantityToAdd , productInInventory.getValue().getPrice()) );
+                        customer.getCart().put(productInInventory.getKey() , new Product(productInInventory.getValue().getProductId(),productInInventory.getValue().getProductName() , productInInventory.getValue().getProductCategory() , quantityToAdd , productInInventory.getValue().getPrice()) );
                         productInInventory.getValue().setProductQty(productInInventory.getValue().getProductQty() - quantityToAdd);
                         System.out.println(productInInventory.getValue().getProductName() + " has been added to cart! ");
                         message = "Added";
@@ -61,12 +61,13 @@ public class CustomerServiceImpl implements iCustomer {
         return message;
     }
 
+
     @Override
     public String buyProduct(Customer customer){
         String message = "";
         if(customer.getCart().size() > 0){
             int total = 0;
-            for(Map.Entry<String, models.Product> customerCart : customer.getCart().entrySet()){
+            for(Map.Entry<String, Product> customerCart : customer.getCart().entrySet()){
                 total += customerCart.getValue().getPrice() * customerCart.getValue().getProductQty();
             }
             if(total < customer.getWalletBalance()){

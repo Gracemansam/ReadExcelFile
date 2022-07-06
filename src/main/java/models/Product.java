@@ -1,6 +1,7 @@
-package models;
+package main.java.models;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Product{
 
@@ -74,5 +75,18 @@ public class Product{
                 ", productQty=" + productQty +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productQty == product.productQty && Double.compare(product.price, price) == 0 && productId.equals(product.productId) && productName.equals(product.productName) && productCategory.equals(product.productCategory);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productName, productCategory, productQty, price);
     }
 }

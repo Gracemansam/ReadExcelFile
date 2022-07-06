@@ -1,10 +1,11 @@
 package main.java.services;
 
-import base.User;
+//import base.User;
 import main.java.interfaces.iCashier;
 import main.java.models.Cashier;
 import main.java.models.Customer;
-import models.Product;
+import main.java.models.Product;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,13 +60,15 @@ public  class CashierServiceImplementation  implements iCashier {
                     System.out.println(productInInventory.getValue().getProductName() + " is Currently Out of stock!");
                     message = "NoStock";
                 }
+            }else{
+                message = "NotFound";
             }
         }
         return message;
     }
 
     @Override
-    public String buyProduct(Customer customer){
+    public String sellProduct(Customer customer){
         String message = "";
         if(customer.getCart().size() > 0){
             int total = 0;
