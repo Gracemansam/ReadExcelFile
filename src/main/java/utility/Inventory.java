@@ -2,7 +2,7 @@ package main.java.utility;
 
 import main.java.services.FileUtilityServiceImpl;
 import main.java.utility.FileUtility;
-import models.Product;
+import main.java.models.Product;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class Inventory {
     private int barIdIncreament = 1;
     private int barCategoryTotalQuantity = 0;
 
-    private static   HashMap<String , Product> barsCategory = new HashMap<>();
+    private static HashMap<String, Product> barsCategory = new HashMap<>();
 
 
      public Inventory() throws IOException {
