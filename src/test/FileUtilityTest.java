@@ -50,9 +50,6 @@ class FileUtilityTest {
     @Test
     void createCategoryInventory() throws IOException {
         HashMap<String, Product> categoryHashMap = new HashMap<>();
-
-
-
         var actual = fileUtilityService.createCategoryInventory(categoryHashMap , file, 0 , "P" , 1);
         var exxpected = categoryHashMap;
         assertEquals(exxpected , actual);

@@ -1,9 +1,13 @@
 package test;
+import main.java.base.User;
 import main.java.models.Customer;
+import main.java.models.CustomerCompare;
 import main.java.models.Product;
 import main.java.services.CashierServiceImplementation;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -133,9 +137,27 @@ class CashierServiceImplementationTest {
         Customer customerTest = new Customer("1" , "Vincent" , "Lagos" , 1000);
         cashier.addToCart("p244" , 2 , testInventory, customerTest);
         var actual =  cashier.sellProduct(customerTest);
-        var expected = "successfull";
+        var expected = "successful";
 
         assertEquals(expected , actual);
     }
+
+    @Test
+    void sellByPriority_true(){
+        //Given
+        CashierServiceImplementation cashierServiceImplementation = new CashierServiceImplementation();
+        Queue<Customer> queue = new PriorityQueue<>(new CustomerCompare());
+        Customer customer = new Customer("1" , "Vincent" , "Lagos" , 50000);
+        customer.getCart().put("Sugar" , new Product("P244" , "Sugar" , "Cookies", 10 ,1.98));
+        queue.add(customer);
+        var expected = true;
+        //When
+        var actual = cashierServiceImplementation.sellByPriority(queue);
+        assertTrue(actual);
+    }
+
+
+
+
 
 }

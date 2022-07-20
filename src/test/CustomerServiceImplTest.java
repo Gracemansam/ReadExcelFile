@@ -25,7 +25,6 @@ class CustomerServiceImplTest {
 
     @org.junit.jupiter.api.Test
     void checkDuplicate_true() {
-
         HashMap<String , Product> testCart = new HashMap<>();
         testCart.put("Sugar" , new Product("P244" , "Brans" , "Cookies", 10 ,1.98));
         boolean actual = cashier.checkDuplicate("p244" , testCart);
@@ -35,7 +34,6 @@ class CustomerServiceImplTest {
 
     @Test
     void checkDuplicate_false() {
-
         HashMap<String , Product> testCart = new HashMap<>();
         testCart.put("Sugar" , new Product("P244" , "Brans" , "Cookies", 10 ,1.98));
         boolean actual = cashier.checkDuplicate("p243" , testCart);
@@ -48,7 +46,6 @@ class CustomerServiceImplTest {
         HashMap<String , Product> testCart = new HashMap<>();
         Product product = new Product("P244" , "Brans" , "Cookies", 10 ,1.98);
         testCart.put("Brans" , product);
-
         var actual = cashier.findProduct("Brans" , testCart);
         assertEquals(product , actual);
     }
@@ -68,7 +65,6 @@ class CustomerServiceImplTest {
         HashMap<String , Product> testInventory = new HashMap<>();
         Product product = new Product("P244" , "Sugar" , "Cookies", 10 ,1.98);
         testInventory.put("Sugar" , product);
-
         var actual = cashier.addToCart("p243" , 20 , testInventory, customer);
         var expected = "NotFound";
         assertEquals(expected , actual);
@@ -111,7 +107,6 @@ class CustomerServiceImplTest {
     void buyProduct_Empty_cart() {
         var actual =  cashier.sellProduct(customer);
         var expected = "empty";
-
         assertEquals(expected , actual);
     }
 
@@ -124,7 +119,6 @@ class CustomerServiceImplTest {
         cashier.addToCart("p244" , 2 , testInventory, customerTest);
         var actual =  cashier.sellProduct(customerTest);
         var expected = "insufficient";
-
         assertEquals(expected , actual);
     }
 
@@ -138,7 +132,6 @@ class CustomerServiceImplTest {
         cashier.addToCart("p244" , 2 , testInventory, customerTest);
         var actual =  cashier.sellProduct(customerTest);
         var expected = "successfull";
-
         assertEquals(expected , actual);
     }
 }
